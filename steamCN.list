@@ -1,4 +1,8 @@
 # Steam游戏下载、更新[中国]
+##Steam下载不走代理
+DOMAIN,login.steampowered.com
+DOMAIN,test.steampowered.com
+DOMAIN-SUFFIX,steamserver.net
 DOMAIN,alibaba.cdn.steampipe.steamcontent.com
 DOMAIN,cdn-qc.content.steamchina.com
 DOMAIN,cdn-ws.content.steamchina.com
