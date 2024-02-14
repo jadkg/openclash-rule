@@ -5,9 +5,16 @@ p: &p {type: http, interval: 3600, health-check: {enable: true, url: https://www
 
 # url 里填写自己的订阅,名称不能重复
 proxy-providers:
-  六分机场:
+  机场名字1:
     <<: *p
-    url: "订阅链接填这里"
+    url: "机场订阅链接"
+
+
+proxy-providers:
+  机场名字2:
+    <<: *p
+    url: "机场订阅链接"
+
 
 ipv6: false
 allow-lan: true
@@ -97,23 +104,23 @@ proxy-groups:
 
 
 ##分隔,下面是地区手动分组##
-  - {name: 🇭🇰 香港手动, type: select , include-all-providers: true, filter: "(?i)🇭🇰|香港|(\b(HK|Hong)\b)^(?!.*(?:回国|校园|游戏|🎮|(\b(GAME)\b))).*"}
-  - {name: 🇨🇳 台湾手动, type: select , include-all-providers: true, filter: "(?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)^(?!.*(?:回国|校园|游戏|🎮|(\b(GAME)\b))).*"}
-  - {name: 🇯🇵 日本手动, type: select , include-all-providers: true, filter: "(?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)^(?!.*(?:回国|校园|游戏|🎮|(\b(GAME)\b))).*"}
-  - {name: 🇺🇲 美国手动, type: select , include-all-providers: true, filter: "(?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)^(?!.*(?:回国|校园|游戏|🎮|(\b(GAME)\b))).*"}
-  - {name: 🇸🇬 狮城手动, type: select , include-all-providers: true, filter: "(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)^(?!.*(?:回国|校园|游戏|🎮|(\b(GAME)\b))).*"}
-  - {name: 🇰🇷 韩国手动, type: select , include-all-providers: true, filter: "(?i)🇰🇷|韩国|韓|首尔|(\b(KR|Korea)\b)^(?!.*(?:回国|校园|游戏|🎮|(\b(GAME)\b))).*"}
+  - {name: 🇭🇰 香港手动, type: select , include-all-providers: true, filter: "(?i)🇭🇰|香港|(\b(HK|Hong)\b)", exclude-filter: "回国|校园|游戏|🎮|(\b(GAME)\b)"}
+  - {name: 🇨🇳 台湾手动, type: select , include-all-providers: true, filter: "(?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)", exclude-filter: "回国|校园|游戏|🎮|(\b(GAME)\b)"}
+  - {name: 🇯🇵 日本手动, type: select , include-all-providers: true, filter: "(?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)", exclude-filter: "回国|校园|游戏|🎮|(\b(GAME)\b)"}
+  - {name: 🇺🇲 美国手动, type: select , include-all-providers: true, filter: "(?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)", exclude-filter: "回国|校园|游戏|🎮|(\b(GAME)\b)"}
+  - {name: 🇸🇬 狮城手动, type: select , include-all-providers: true, filter: "(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)", exclude-filter: "回国|校园|游戏|🎮|(\b(GAME)\b)"}
+  - {name: 🇰🇷 韩国手动, type: select , include-all-providers: true, filter: "(?i)🇰🇷|韩国|韓|首尔|(\b(KR|Korea)\b)", exclude-filter: "回国|校园|游戏|🎮|(\b(GAME)\b)"}
 
 
 
 ##分隔,下面是地区自动分组##
-  - {name: 🇭🇰 香港自动, type: url-test , include-all-providers: true, filter: "(?i)🇭🇰|香港|(\b(HK|Hong)\b)^(?!.*(?:回国|ipv6|校园|游戏|🎮|(\b(GAME)\b))).*", tolerance: 50}
-  - {name: 🇨🇳 台湾自动, type: url-test , include-all-providers: true, filter: "(?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)^(?!.*(?:回国|校园|游戏|🎮|(\b(GAME)\b))).*", tolerance: 50}
-  - {name: 🇯🇵 日本自动, type: url-test , include-all-providers: true, filter: "(?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)^(?!.*(?:回国|校园|游戏|🎮|(\b(GAME)\b))).*", tolerance: 50}
-  - {name: 🇺🇲 美国自动, type: url-test , include-all-providers: true, filter: "(?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)^(?!.*(?:回国|校园|游戏|🎮|(\b(GAME)\b))).*", tolerance: 80}
-  - {name: 🇸🇬 狮城自动, type: url-test , include-all-providers: true, filter: "(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)^(?!.*(?:回国|校园|游戏|🎮|(\b(GAME)\b))).*", tolerance: 50}
-  - {name: 🇰🇷 韩国自动, type: url-test , include-all-providers: true, filter: "(?i)🇰🇷|韩国|韓|首尔|(\b(KR|Korea)\b)^(?!.*(?:回国|校园|游戏|🎮|(\b(GAME)\b))).*", tolerance: 50}
-  - {name: 6️⃣ IPV6节点, type: url-test , include-all-providers: true, filter: "(?i)ipv6|v6|NF|奈飞|解锁|Netflix|NETFLIX|Media^(?!.*(?:回国|校园|游戏|🎮|(\b(GAME)\b))).*", tolerance: 20}
+  - {name: 🇭🇰 香港自动, type: url-test , include-all-providers: true, filter: "(?i)🇭🇰|香港|(\b(HK|Hong)\b)", exclude-filter: "回国|ipv6|校园|游戏|🎮|(\b(GAME)\b)", tolerance: 50}
+  - {name: 🇨🇳 台湾自动, type: url-test , include-all-providers: true, filter: "(?i)🇹🇼|台湾|(\b(TW|Tai|Taiwan)\b)", exclude-filter: "回国|ipv6|校园|游戏|🎮|(\b(GAME)\b)", tolerance: 50}
+  - {name: 🇯🇵 日本自动, type: url-test , include-all-providers: true, filter: "(?i)🇯🇵|日本|川日|东京|大阪|泉日|埼玉|(\b(JP|Japan)\b)", exclude-filter: "回国|ipv6|校园|游戏|🎮|(\b(GAME)\b)", tolerance: 50}
+  - {name: 🇺🇲 美国自动, type: url-test , include-all-providers: true, filter: "(?i)🇺🇸|美国|波特兰|达拉斯|俄勒冈|凤凰城|费利蒙|硅谷|拉斯维加斯|洛杉矶|圣何塞|圣克拉拉|西雅图|芝加哥|(\b(US|United States)\b)", exclude-filter: "回国|ipv6|校园|游戏|🎮|(\b(GAME)\b)", tolerance: 80}
+  - {name: 🇸🇬 狮城自动, type: url-test , include-all-providers: true, filter: "(?i)🇸🇬|新加坡|狮|(\b(SG|Singapore)\b)", exclude-filter: "回国|ipv6|校园|游戏|🎮|(\b(GAME)\b)", tolerance: 50}
+  - {name: 🇰🇷 韩国自动, type: url-test , include-all-providers: true, filter: "(?i)🇰🇷|韩国|韓|首尔|(\b(KR|Korea)\b)", exclude-filter: "回国|ipv6|校园|游戏|🎮|(\b(GAME)\b)", tolerance: 50}
+  - {name: 6️⃣ IPV6节点, type: url-test , include-all-providers: true, filter: "(?i)ipv6|v6|NF|奈飞|解锁|Netflix|NETFLIX|Media", exclude-filter: "回国|校园|游戏|🎮|(\b(GAME)\b)", tolerance: 20}
 
 
 
